@@ -14,6 +14,8 @@ public class Card : MonoBehaviour
     public Image cd;
     public GameObject[] g;
 
+    public Vector3 target;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -31,6 +33,7 @@ public class Card : MonoBehaviour
     {
         if(Cooldown > 0){Cooldown--;} else {g[0].SetActive(false); g[1].SetActive(false);}
         cd.fillAmount = (1f - ((float)Cooldown / (float)MaxCooldown));
+        transform.position = Vector3.Lerp(transform.position, target, 0.1f);
     }
 
     private void OnMouseOver()

@@ -9,7 +9,9 @@ public class Deck : MonoBehaviour
     public GameObject deckFull;
 	public Transform[] cardSlots;
 	public bool[] avalCardSlots;
-    public int avalSlotCount;
+	public int avalSlotCount;
+
+	public int handSize;
 
     public static Deck me;
 
@@ -17,22 +19,29 @@ public class Deck : MonoBehaviour
 
 	//public i
 
-    //public Card SelectedCard;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+	//public Card SelectedCard;
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
+	{
 		DrawTimer[0] = DrawTimer[1];
-        Random.InitState(0);
-        me = this;
-        deck.Clear ();
-		discard.Clear ();
-		foreach(Transform child in deckFull.transform){
-			deck.Add (child.gameObject.GetComponent<Card> ());
+		Random.InitState(0);
+		me = this;
+		deck.Clear();
+		discard.Clear();
+		foreach (Transform child in deckFull.transform)
+		{
+			deck.Add(child.gameObject.GetComponent<Card>());
 			//deck.Add (child.gameObject.GetComponent<Card> ());
 		}
-        avalSlotCount = avalCardSlots.Length;
-        //Shuffle();
-        //DrawCard();
+		handSize = avalCardSlots.Length;
+		avalSlotCount = avalCardSlots.Length;
+		//Shuffle();
+		//DrawCard();
+	}
+
+	public Vector3 CalcHandPos()
+    {
+		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)(handSize - avalSlotCount) / (float)handSize) * 1.25f));
     }
 
     public void DrawCard(){
@@ -41,13 +50,15 @@ public class Deck : MonoBehaviour
 			//Random.seed = System.DateTime.Now.Millisecond;
 			Card randCard = deck[Random.Range(0, deck.Count)];
 
-			for(int i = 0; i < cardSlots.Length; i++){
+			for(int i = 0; i < handSize; i++){
 				if(avalCardSlots[i]){
-					deck.Remove (randCard);
+					deck.Remove(randCard);
 					//Debug.Log(randCard.ID + " #" + i);
+					randCard.target = CalcHandPos();
 					avalSlotCount--;
 					randCard.handInd = i;
-					randCard.transform.transform.position = cardSlots[i].position;
+					
+					//randCard.transform.transform.position = cardSlots[i].position;
 					randCard.transform.gameObject.SetActive(true);
 					randCard.played = false;
 					avalCardSlots[i] = false;
