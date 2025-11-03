@@ -13,20 +13,48 @@ public class Card : MonoBehaviour
 
     public Image cd;
     public GameObject[] g;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        Activate();
+    }
+
+    public void Activate(){
         Cooldown = MaxCooldown;
+        g[0].SetActive(true);
+        g[1].SetActive(true);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(Cooldown > 0){Cooldown--;}
-        cd.fillAmount = 1 - (Cooldown / MaxCooldown);
+        if(Cooldown > 0){Cooldown--;} else {g[0].SetActive(false); g[1].SetActive(false);}
+        cd.fillAmount = (1f - ((float)Cooldown / (float)MaxCooldown));
     }
 
-    public void OnMouseDown(){
-        
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1) && Cooldown <= 0) //discard
+        {
+            Debug.Log("Right-clicked on " + gameObject.name);
+            played = true;
+            Deck.me.discard.Add (this);
+            Deck.me.avalCardSlots [handInd] = true;
+            transform.gameObject.SetActive (false);
+            Deck.me.avalSlotCount++;
+            // Add your desired right-click logic here
+        }
+
+        if (Input.GetMouseButtonDown(0) && Cooldown <= 0) //use
+        {
+            Debug.Log("Left-clicked on " + gameObject.name);
+            played = true;
+            Deck.me.discard.Add (this);
+            Deck.me.avalCardSlots [handInd] = true;
+            transform.gameObject.SetActive (false);
+            Deck.me.avalSlotCount++;
+            // Add your desired right-click logic here
+        }
     }
 }

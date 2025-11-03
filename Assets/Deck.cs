@@ -11,12 +11,17 @@ public class Deck : MonoBehaviour
 	public bool[] avalCardSlots;
     public int avalSlotCount;
 
-    public Deck me;
+    public static Deck me;
+
+	public int[] DrawTimer;
+
+	//public i
 
     //public Card SelectedCard;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+		DrawTimer[0] = DrawTimer[1];
         Random.InitState(0);
         me = this;
         deck.Clear ();
@@ -27,7 +32,7 @@ public class Deck : MonoBehaviour
 		}
         avalSlotCount = avalCardSlots.Length;
         //Shuffle();
-        DrawCard();
+        //DrawCard();
     }
 
     public void DrawCard(){
@@ -46,6 +51,7 @@ public class Deck : MonoBehaviour
 					randCard.transform.gameObject.SetActive(true);
 					randCard.played = false;
 					avalCardSlots[i] = false;
+					randCard.Activate();
 					return;
 				}
 			}
@@ -63,8 +69,11 @@ public class Deck : MonoBehaviour
 	}
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+		if(avalSlotCount > 0){if(DrawTimer[0] > 0){DrawTimer[0]--;} else {DrawTimer[0] = DrawTimer[1]; DrawCard();} }
+        if(deck.Count >= 0){
+			Shuffle();
+		}
     }
 }
