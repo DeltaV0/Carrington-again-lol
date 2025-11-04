@@ -1,10 +1,21 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 public class Player : MonoBehaviour
 {
-    public Player me;
+    [Header("Player")]
+    public static Player me;
 
-    public int[] Resources;
+    [Header("Misc Variables")]
+    public int[] Resources; //steam, power, voltite
+
+    public int Funding; //cash money
+
+    public int[] Hull; //current health, max health
+
+    public List<SubSystem> SubSystems = new List<SubSystem>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {

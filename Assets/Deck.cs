@@ -17,6 +17,8 @@ public class Deck : MonoBehaviour
 
 	public int[] DrawTimer;
 
+	public List<Card> Hand = new List<Card>();
+
 	//public i
 
 	//public Card SelectedCard;
@@ -40,8 +42,12 @@ public class Deck : MonoBehaviour
 	}
 
 	public Vector3 CalcHandPos()
+	{
+		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)(handSize - avalSlotCount) / (float)handSize) * (1 + (1 / ((float)handSize - 1)))));
+	}
+	public Vector3 CalcCurrHandPos(int a)
     {
-		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)(handSize - avalSlotCount) / (float)handSize) * 1.25f));
+		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)(handSize - a) / (float)handSize) * (1 + (1 / ((float)handSize - 1)))));
     }
 
     public void DrawCard(){
@@ -57,12 +63,13 @@ public class Deck : MonoBehaviour
 					randCard.target = CalcHandPos();
 					avalSlotCount--;
 					randCard.handInd = i;
+					Hand.Add(randCard);
 					
 					//randCard.transform.transform.position = cardSlots[i].position;
 					randCard.transform.gameObject.SetActive(true);
 					randCard.played = false;
 					avalCardSlots[i] = false;
-					randCard.Activate();
+					randCard.Set(true);
 					return;
 				}
 			}
