@@ -19,6 +19,8 @@ public class Deck : MonoBehaviour
 
 	public List<Card> Hand = new List<Card>();
 
+	public int MinHandPos;
+
 	//public i
 
 	//public Card SelectedCard;
@@ -43,12 +45,23 @@ public class Deck : MonoBehaviour
 
 	public Vector3 CalcHandPos()
 	{
-		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)(handSize - avalSlotCount) / (float)handSize) * (1 + (1 / ((float)handSize - 1)))));
+		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)MinHandPos / (float)handSize) * (1 + (1 / ((float)handSize - 1)))));
 	}
 	public Vector3 CalcCurrHandPos(int a)
     {
 		return Vector3.Lerp(cardSlots[0].position, cardSlots[1].position, (((float)(handSize - a) / (float)handSize) * (1 + (1 / ((float)handSize - 1)))));
     }
+
+	public void CalcMinHandPos(){
+		for(int i = 0; i < avalCardSlots.Length; i++){
+			if(avalCardSlots[i]){
+				MinHandPos = i;
+				break;
+				//return i;
+			}
+		}
+		//return -1;
+	}
 
     public void DrawCard(){
 		//draw a random card from deck
@@ -90,6 +103,7 @@ public class Deck : MonoBehaviour
     void FixedUpdate()
     {
 		if(avalSlotCount > 0){if(DrawTimer[0] > 0){DrawTimer[0]--;} else {DrawTimer[0] = DrawTimer[1]; DrawCard();} }
+		CalcMinHandPos();
         if(deck.Count >= 0){
 			Shuffle();
 		}

@@ -27,6 +27,8 @@ public class Card : MonoBehaviour
 
     public SubSystem systemToActivate;
 
+    public bool DisabledNoResources;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -38,15 +40,19 @@ public class Card : MonoBehaviour
         g[0].SetActive(set);
         g[1].SetActive(set);
         g[2].SetActive(set);
-        Usable = !set;
+        Usable = !set && !DisabledNoResources;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(system){
+        DisabledNoResources = !(Player.me.Resources[0] >= systemToActivate.resourceUsage[0] && Player.me.Resources[1] >= systemToActivate.resourceUsage[1] && Player.me.Resources[2] >= systemToActivate.resourceUsage[2]);
+        }
+        g[3].SetActive(DisabledNoResources);
         //fix this!
         //If revious hand ind is empty, move back
-        target = Deck.me.CalcCurrHandPos(handInd);
+        //target = Deck.me.CalcCurrHandPos(handInd);
         if (Cooldown > 0) { Cooldown--; }
         Set(!(Cooldown <= 0 && (!system || systemToActivate.Cooldown <= 0)));
         cd.fillAmount = (1f - ((float)Cooldown / (float)MaxCooldown));
@@ -72,7 +78,7 @@ public class Card : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) && Usable) //discard
+        if (Input.GetMouseButtonDown(1)) //discard
         {
             Debug.Log("Right-clicked on " + gameObject.name);
             played = true;
@@ -82,6 +88,7 @@ public class Card : MonoBehaviour
             Deck.me.avalSlotCount++;
             Deck.me.Hand.Remove(this);
             // Add your desired right-click logic here
+            Player.me.Resources[0] += 10;
         }
 
         if (Input.GetMouseButtonDown(0) && Usable) //use

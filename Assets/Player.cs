@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+
 public class Player : MonoBehaviour
 {
     [Header("Player")]
@@ -16,15 +17,20 @@ public class Player : MonoBehaviour
 
     public List<SubSystem> SubSystems = new List<SubSystem>();
 
+    [Header("Changing Variables")]
+
+    public float PowerGen;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         me = this;
+        PowerGen = 1f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        //PowerGen = Mathf.Lerp(PowerGen, 1f, 0.0025f);
     }
 }
