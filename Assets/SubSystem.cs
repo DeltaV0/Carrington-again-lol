@@ -21,7 +21,7 @@ public class SubSystem : MonoBehaviour
 
     public int CooldownMax;
 
-    void Awake()
+    void Start()
     {
        Player.me.SubSystems[ID] = this;
     }
