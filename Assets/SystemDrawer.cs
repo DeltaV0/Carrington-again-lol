@@ -19,7 +19,7 @@ public class SystemDrawer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        system = Player.me.SubSystems[ID];
+       // system = Player.me.SubSystems[ID];
     }
 
     // Update is called once per frame

@@ -7,11 +7,8 @@ public class Pulse_Repeater_Subsystem : SubSystem
         CooldownSet();
         Debug.Log("BangBang");
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        Player.me.SubSystems[ID] = this;
-    }
+
+
 
     // Update is called once per frame
     void Update()

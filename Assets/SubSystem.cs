@@ -21,10 +21,10 @@ public class SubSystem : MonoBehaviour
 
     public int CooldownMax;
 
-    //void Awake()
- //   {
-       
-   // }
+    void Awake()
+    {
+       Player.me.SubSystems[ID] = this;
+    }
 
     void FixedUpdate()
     {
