@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     public int[] Hull; //current health, max health
 
-    public List<SubSystem> SubSystems = new List<SubSystem>();
+    public SubSystem[] SubSystems;
 
     [Header("Changing Variables")]
 

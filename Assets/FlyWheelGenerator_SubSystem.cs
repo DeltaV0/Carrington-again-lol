@@ -11,9 +11,11 @@ public class FlyWheelGenerator_SubSystem : SubSystem
         Debug.Log("brrrt");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        //i am bewildered
+        //how is this broken exactly?
+        Debug.Log(Player.me.PowerGen + "");
     }
 
     // Update is called once per frame

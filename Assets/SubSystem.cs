@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class SubSystem : MonoBehaviour
 {
@@ -8,17 +11,20 @@ public class SubSystem : MonoBehaviour
 
     public int ID; //0 and 1 are weapons, 2 is shield, 3 is drives (default)
 
+    public int health;
+
+    public int maxHealth;
+
     public int[] resourceUsage;
 
     public int Cooldown;
 
     public int CooldownMax;
 
-    void Awake()
-    {
-
-//        Player.me.SubSystems.Insert(ID, this);
-    }
+    //void Awake()
+ //   {
+       
+   // }
 
     void FixedUpdate()
     {
