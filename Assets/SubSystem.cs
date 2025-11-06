@@ -7,6 +7,8 @@ public class SubSystem : MonoBehaviour
 {
     public string Name;
 
+    public int[] level;
+
     public int Type;
 
     public int ID; //0 and 1 are weapons, 2 is shield, 3 is drives (default)

@@ -16,16 +16,22 @@ public class SystemDrawer : MonoBehaviour
 
     public GameObject Selector;
 
+    public GameObject Targeted;
+
+    public bool player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
-       // system = Player.me.SubSystems[ID];
+        system = Player.me.SubSystems[ID];
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        Targeted.SetActive(Player.me.TargetSelectedSystem == this || Player.me.PlayerSelectedSystem == this);
+        Bar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ((float)system.health / (float)system.maxHealth) * 100);
+        texts[0].text = system.name + "\nMK " + system.level[0] + "." + system.level[1];
     }
 
     void OnMouseEnter(){
@@ -35,6 +41,13 @@ public class SystemDrawer : MonoBehaviour
         Selector.SetActive(false);
     }
     void OnMouseDown(){
-
+        if (player)
+        {
+            Player.me.PlayerSelectedSystem = system;
+        }
+        else
+        {
+            Player.me.TargetSelectedSystem = system;
+        }
     }
 }
