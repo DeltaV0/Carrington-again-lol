@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class Card : MonoBehaviour
 {
+    public bool playerCard;
+    
     [Header("Misc settings")]
     public int handInd;
     public bool played;
@@ -25,6 +27,7 @@ public class Card : MonoBehaviour
 
     public bool system;
 
+    public int systemID;
     public SubSystem systemToActivate;
 
     public bool DisabledNoResources;
@@ -32,8 +35,17 @@ public class Card : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if (playerCard)
+        {
+            systemToActivate = Player.me.SubSystems[systemID];
+            Set(true);
+        }
+        else
+        {
+            systemToActivate = Enemy_AI.me.SubSystems[systemID];
+        }
         Cooldown = MaxCooldown;
-        Set(true);
+        
     }
 
     public void Set(bool set){
@@ -46,21 +58,34 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(system){
-        DisabledNoResources = !(Player.me.Resources[0] >= systemToActivate.resourceUsage[0] && Player.me.Resources[1] >= systemToActivate.resourceUsage[1] && Player.me.Resources[2] >= systemToActivate.resourceUsage[2]);
-        }
-        g[3].SetActive(DisabledNoResources);
-        //fix this!
-        //If revious hand ind is empty, move back
-        //target = Deck.me.CalcCurrHandPos(handInd);
-        if (Cooldown > 0) { Cooldown--; }
-        Set(!(Cooldown <= 0 && (!system || systemToActivate.Cooldown <= 0)));
-        cd.fillAmount = (1f - ((float)Cooldown / (float)MaxCooldown));
-        if (system)
+        if (playerCard)
         {
-            cd2.fillAmount = (((float)systemToActivate.Cooldown / (float)systemToActivate.CooldownMax));
+            if (system)
+            {
+                DisabledNoResources = !(Player.me.Resources[0] >= systemToActivate.resourceUsage[0] && Player.me.Resources[1] >= systemToActivate.resourceUsage[1] && Player.me.Resources[2] >= systemToActivate.resourceUsage[2]);
+            }
+            g[3].SetActive(DisabledNoResources);
+            //fix this!
+            //If revious hand ind is empty, move back
+            //target = Deck.me.CalcCurrHandPos(handInd);
+            if (Cooldown > 0) { Cooldown--; }
+            Set(!(Cooldown <= 0 && (!system || systemToActivate.Cooldown <= 0)));
+            cd.fillAmount = (1f - ((float)Cooldown / (float)MaxCooldown));
+            if (system)
+            {
+                cd2.fillAmount = (((float)systemToActivate.Cooldown / (float)systemToActivate.CooldownMax));
+            }
+            transform.position = Vector3.Lerp(transform.position, target, 0.1f);
         }
-        transform.position = Vector3.Lerp(transform.position, target, 0.1f);
+        else
+        {
+            if (system)
+            {
+                DisabledNoResources = !(Enemy_AI.me.Resources[0] >= systemToActivate.resourceUsage[0] && Enemy_AI.me.Resources[1] >= systemToActivate.resourceUsage[1] && Enemy_AI.me.Resources[2] >= systemToActivate.resourceUsage[2]);
+            }
+            if (Cooldown > 0) { Cooldown--; }
+            Usable = !set && !DisabledNoResources;
+        }
     }
 
     public void UseCard()
@@ -73,7 +98,40 @@ public class Card : MonoBehaviour
 
     public void DiscardCard()
     {
-        
+
+    }
+
+    public void EnemyClick(int a)
+    {
+        if (a == 1) //discard
+        {
+            Debug.Log("Right-clicked on " + gameObject.name);
+            played = true;
+            EnemyDeck.me.discard.Add (this);
+            EnemyDeck.me.avalCardSlots [handInd] = true;
+            
+            EnemyDeck.me.avalSlotCount++;
+            EnemyDeck.me.Hand.Remove(this);
+            Cooldown = MaxCooldown;
+            // Add your desired right-click logic here
+            Enemy_AI.me.Resources[0] += 10;
+            transform.gameObject.SetActive (false);
+        }
+
+        if (a == 0 && Usable) //use
+        {
+            Debug.Log("Left-clicked on " + gameObject.name);
+            played = true;
+            EnemyDeck.me.discard.Add (this);
+            EnemyDeck.me.avalCardSlots [handInd] = true;
+            EnemyDeck.me.avalSlotCount++;
+            EnemyDeck.me.Hand.Remove(this);
+            Cooldown = MaxCooldown;
+            UseCard();
+            transform.gameObject.SetActive (false);
+            
+            // Add your desired right-click logic here
+        }
     }
 
     private void OnMouseOver()
