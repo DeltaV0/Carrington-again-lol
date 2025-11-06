@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
 
     public SubSystem TargetSelectedSystem;
 
+    public int health;
+
+    public int maxHealth;
+
     [Header("Changing Variables")]
 
     public float PowerGen;
@@ -33,7 +37,7 @@ public class Player : MonoBehaviour
     {
         me = this;
         PowerGen = 1f;
-        
+
     }
 
     // Update is called once per frame

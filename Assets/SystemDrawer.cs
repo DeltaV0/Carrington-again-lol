@@ -23,7 +23,14 @@ public class SystemDrawer : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        system = Player.me.SubSystems[ID];
+        if (player)
+        {
+            system = Player.me.SubSystems[ID];
+        }
+        else
+        {
+            system = Enemy_AI.me.SubSystems[ID];
+        }
     }
 
     // Update is called once per frame

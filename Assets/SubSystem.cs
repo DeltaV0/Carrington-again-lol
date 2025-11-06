@@ -36,7 +36,7 @@ public class SubSystem : MonoBehaviour
         }
         else
         {
-            Enemy.me.SubSystems[ID] = this;
+            Enemy_AI.me.SubSystems[ID] = this;
         }
     }
 

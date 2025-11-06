@@ -84,11 +84,13 @@ public class Card : MonoBehaviour
             played = true;
             Deck.me.discard.Add (this);
             Deck.me.avalCardSlots [handInd] = true;
-            transform.gameObject.SetActive (false);
+            
             Deck.me.avalSlotCount++;
             Deck.me.Hand.Remove(this);
+            Cooldown = MaxCooldown;
             // Add your desired right-click logic here
             Player.me.Resources[0] += 10;
+            transform.gameObject.SetActive (false);
         }
 
         if (Input.GetMouseButtonDown(0) && Usable) //use
@@ -97,10 +99,12 @@ public class Card : MonoBehaviour
             played = true;
             Deck.me.discard.Add (this);
             Deck.me.avalCardSlots [handInd] = true;
-            transform.gameObject.SetActive (false);
             Deck.me.avalSlotCount++;
             Deck.me.Hand.Remove(this);
+            Cooldown = MaxCooldown;
             UseCard();
+            transform.gameObject.SetActive (false);
+            
             // Add your desired right-click logic here
         }
     }
