@@ -22,18 +22,45 @@ public class SubSystem : MonoBehaviour
     public int Cooldown;
 
     public int CooldownMax;
+    public int CooldownDestroy;
+
+    public bool OwnedByPlayer;
+
+    //public int[] HealCooldown;
 
     void Start()
     {
-       Player.me.SubSystems[ID] = this;
+        if (OwnedByPlayer)
+        {
+            Player.me.SubSystems[ID] = this;
+        }
+        else
+        {
+            Enemy.me.SubSystems[ID] = this;
+        }
+    }
+
+    public void Heal(int a)
+    {
+        if (health <= maxHealth)
+            {
+            health += a;
+            }
     }
 
     void FixedUpdate()
     {
-        if (Cooldown > 0)
+        if (Cooldown > 0 && health > 0)
         {
-            Cooldown--; 
+            Cooldown--;
         }
+
+        health = Mathf.Clamp(health, 0, maxHealth);
+        if (health <= 0)
+        {
+            Cooldown = CooldownDestroy;
+        }
+
     }
     public virtual void Use()
     {

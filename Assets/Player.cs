@@ -25,17 +25,28 @@ public class Player : MonoBehaviour
 
     public float PowerGen;
 
+    public int[] CooldownHeal;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         me = this;
         PowerGen = 1f;
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //PowerGen = Mathf.Lerp(PowerGen, 1f, 0.0025f);
+        if (CooldownHeal[0] > 0)
+        {
+            CooldownHeal[0]--;
+        }
+        if (CooldownHeal[0] <= 0 && PlayerSelectedSystem != null)
+        {
+            CooldownHeal[0] = CooldownHeal[1];
+            PlayerSelectedSystem.Heal(5);
+        }
     }
 }

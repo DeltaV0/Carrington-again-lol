@@ -29,9 +29,10 @@ public class SystemDrawer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Targeted.SetActive(Player.me.TargetSelectedSystem == this || Player.me.PlayerSelectedSystem == this);
+        Targeted.SetActive(Player.me.TargetSelectedSystem == system || Player.me.PlayerSelectedSystem == system);
         Bar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ((float)system.health / (float)system.maxHealth) * 100);
-        texts[0].text = system.name + "\nMK " + system.level[0] + "." + system.level[1];
+        texts[0].text = system.Name + "\nMK " + system.level[0] + "." + system.level[1];
+        texts[1].text = system.health + "/" + system.maxHealth;
     }
 
     void OnMouseEnter(){

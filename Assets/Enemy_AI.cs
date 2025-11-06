@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Enemy_AI : MonoBehaviour
 {
+    public SubSystem[] SubSystems;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
