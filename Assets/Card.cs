@@ -17,6 +17,7 @@ public class Card : MonoBehaviour
 
     public Image cd;
     public Image cd2;
+    
     public GameObject[] g;
 
     public bool Usable;
@@ -49,10 +50,12 @@ public class Card : MonoBehaviour
     }
 
     public void Set(bool set){
+        if(playerCard){
         g[0].SetActive(set);
         g[1].SetActive(set);
         g[2].SetActive(set);
         Usable = !set && !DisabledNoResources;
+        }
     }
 
     // Update is called once per frame
@@ -84,7 +87,7 @@ public class Card : MonoBehaviour
                 DisabledNoResources = !(Enemy_AI.me.Resources[0] >= systemToActivate.resourceUsage[0] && Enemy_AI.me.Resources[1] >= systemToActivate.resourceUsage[1] && Enemy_AI.me.Resources[2] >= systemToActivate.resourceUsage[2]);
             }
             if (Cooldown > 0) { Cooldown--; }
-            Usable = !set && !DisabledNoResources;
+            Usable = (Cooldown <= 0 && (!system || systemToActivate.Cooldown <= 0)) && !DisabledNoResources;
         }
     }
 

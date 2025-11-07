@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     public int Funding; //cash money
 
-    public int[] Hull; //current health, max health
+    //public int[] Hull; //current health, max health
 
     public SubSystem[] SubSystems;
 

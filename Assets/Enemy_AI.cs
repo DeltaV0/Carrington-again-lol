@@ -8,6 +8,11 @@ public class Enemy_AI : MonoBehaviour
 
     public int maxHealth;
     public SubSystem[] SubSystems;
+
+    public int[] Resources;
+
+    public SubSystem TargetSelectedSystem;
+    public SubSystem HealSelectedSystem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {

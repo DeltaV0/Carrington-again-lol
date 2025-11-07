@@ -13,7 +13,7 @@ public class EnemyDeck : MonoBehaviour
 
 	public int handSize;
 
-    public static Deck me;
+    public static EnemyDeck me;
 
 	public int[] DrawTimer;
 
@@ -45,7 +45,7 @@ public class EnemyDeck : MonoBehaviour
 				if(avalCardSlots[i]){
 					deck.Remove(randCard);
 					//Debug.Log(randCard.ID + " #" + i);
-					randCard.target = CalcHandPos();
+					//randCard.target = CalcHandPos();
 					avalSlotCount--;
 					randCard.handInd = i;
 					Hand.Add(randCard);
@@ -75,7 +75,7 @@ public class EnemyDeck : MonoBehaviour
     void FixedUpdate()
     {
 		if(avalSlotCount > 0){if(DrawTimer[0] > 0){DrawTimer[0]--;} else { DrawTimer[1] = Mathf.Clamp(DrawTimer[1] - 5, 100, 200); DrawTimer[0] = DrawTimer[1]; DrawCard();} }
-		CalcMinHandPos();
+		//CalcMinHandPos();
         if(deck.Count >= 0){
 			Shuffle();
 		}
