@@ -3173,7 +3173,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1041651784}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1041651787
 Camera:
   m_ObjectHideFlags: 0
@@ -3715,7 +3715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1220001604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5594,7 +5594,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1923683098
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5869,7 +5869,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017523458}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &2017523461
 Camera:
   m_ObjectHideFlags: 0
