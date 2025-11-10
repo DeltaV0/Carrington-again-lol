@@ -74,10 +74,17 @@
         },
         {
             "m_Id": "daccc2a08ad64142a201df2148366064"
+        },
+        {
+            "m_Id": "ee430c44a7374694af44658745f3dd39"
         }
     ],
     "m_GroupDatas": [],
-    "m_StickyNoteDatas": [],
+    "m_StickyNoteDatas": [
+        {
+            "m_Id": "302d62597c0d4409b9621d857da4ff31"
+        }
+    ],
     "m_Edges": [
         {
             "m_OutputSlot": {
@@ -294,6 +301,9 @@
             },
             {
                 "m_Id": "b54fdf7daadd4b17985d0f74c105d3e7"
+            },
+            {
+                "m_Id": "ee430c44a7374694af44658745f3dd39"
             }
         ]
     },
@@ -531,7 +541,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_DepthSamplingMode": 0
+    "m_DepthSamplingMode": 1
 }
 
 {
@@ -667,6 +677,26 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "302d62597c0d4409b9621d857da4ff31",
+    "m_Title": "New Note",
+    "m_Content": "fix ortho depth!!",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -214.0,
+        "y": 61.0,
+        "width": 200.0,
+        "height": 160.0
+    },
+    "m_Group": {
+        "m_Id": ""
+    }
 }
 
 {
@@ -837,6 +867,21 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "invert",
     "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "5d1b1d9536954e6dbcc5d263abaf816d",
+    "m_Id": 0,
+    "m_DisplayName": "Raw Depth",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "FullscreenRawDepth",
+    "m_StageCapability": 2,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
@@ -1455,8 +1500,8 @@
     "m_StencilPassOperation": 0,
     "m_StencilFailOperation": 0,
     "m_StencilDepthFailOperation": 0,
-    "m_DepthWrite": false,
-    "m_depthWriteMode": 0,
+    "m_DepthWrite": true,
+    "m_depthWriteMode": 2,
     "m_AllowMaterialOverride": false,
     "m_DepthTestMode": 0
 }
@@ -1766,6 +1811,40 @@
     "m_FunctionSource": "0014a88abee440d6a9aef01d1e916e71",
     "m_FunctionSourceUsePragmas": true,
     "m_FunctionBody": "Enter function body here..."
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "ee430c44a7374694af44658745f3dd39",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.FullscreenRawDepth",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "5d1b1d9536954e6dbcc5d263abaf816d"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.FullscreenRawDepth"
 }
 
 {
