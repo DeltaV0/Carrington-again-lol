@@ -31,10 +31,13 @@ public class Player : MonoBehaviour
 
     public int[] CooldownHeal;
 
+    public int shieldAmount;
+
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        Random.InitState(0);
         me = this;
         PowerGen = 1f;
 
@@ -43,6 +46,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(shieldAmount > 0){
+            shieldAmount--;
+        }
         if (CooldownHeal[0] > 0)
         {
             CooldownHeal[0]--;

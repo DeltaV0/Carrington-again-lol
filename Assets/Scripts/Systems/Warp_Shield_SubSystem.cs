@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pulse_Repeater_Subsystem : SubSystem
+public class Warp_Shield_SubSystem : SubSystem
 {
     public override void Use()
     {
@@ -8,19 +8,15 @@ public class Pulse_Repeater_Subsystem : SubSystem
         if (OwnedByPlayer)
         {
             Player.me.Resources[1] -= resourceUsage[1];
-            Enemy_AI.me.health -= 100;
-            Player.me.TargetSelectedSystem.health -= 100;
+            Player.me.shieldAmount += 500;
         }
         else
         {
             Enemy_AI.me.Resources[1] -= resourceUsage[1];
-            Player.me.health -= 100;
-            Enemy_AI.me.TargetSelectedSystem.health -= 100;
+            Enemy_AI.me.shieldAmount += 500;
         }
-        Debug.Log("BangBang");
+        Debug.Log("Whirrt");
     }
-
-
 
     // Update is called once per frame
     void Update()

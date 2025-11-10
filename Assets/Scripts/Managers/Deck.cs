@@ -28,7 +28,7 @@ public class Deck : MonoBehaviour
 	void Start()
 	{
 		DrawTimer[0] = DrawTimer[1];
-		Random.InitState(0);
+		
 		me = this;
 		deck.Clear();
 		discard.Clear();

@@ -15,6 +15,8 @@ public class GraphicsManager : MonoBehaviour
     public TMP_Text textPE;
 
     public SystemDrawer[] drawers;
+
+    public TMP_Text[] text;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -24,6 +26,8 @@ public class GraphicsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text[0].text = "" + (int)Mathf.Ceil((float)Player.me.shieldAmount / 500f) * 15;
+        text[1].text = "" + (int)Mathf.Ceil((float)Enemy_AI.me.shieldAmount / 500f) * 15;
         textPE.text = (Mathf.Round(Player.me.PowerGen * 100f) / 100f) + "x";
         bars[0].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Player.me.PowerGen * 100);
         bars[1].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Player.me.Resources[0] * 4.4f);
