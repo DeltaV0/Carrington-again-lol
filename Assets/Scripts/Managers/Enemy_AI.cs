@@ -41,14 +41,6 @@ public class Enemy_AI : MonoBehaviour
         if(shieldAmount > 0){
             shieldAmount--;
         }
-        if(healtimer > 0){
-            healtimer--;
-        } else {
-            healtimer = 50;
-            if(HealSelectedSystem != null){
-            HealSelectedSystem.Heal(5);
-            }
-        }
         if (timer > 0)
         {
             timer--;

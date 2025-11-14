@@ -49,14 +49,6 @@ public class Player : MonoBehaviour
         if(shieldAmount > 0){
             shieldAmount--;
         }
-        if (CooldownHeal[0] > 0)
-        {
-            CooldownHeal[0]--;
-        }
-        if (CooldownHeal[0] <= 0 && PlayerSelectedSystem != null)
-        {
-            CooldownHeal[0] = CooldownHeal[1];
-            PlayerSelectedSystem.Heal(5);
-        }
+        
     }
 }

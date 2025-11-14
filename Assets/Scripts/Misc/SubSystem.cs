@@ -43,9 +43,10 @@ public class SubSystem : MonoBehaviour
     public void Heal(int a)
     {
         if (health <= maxHealth)
-            {
+        {
             health += a;
-            }
+        }
+        health = Mathf.Clamp(health, 0, maxHealth);
     }
 
     void FixedUpdate()
