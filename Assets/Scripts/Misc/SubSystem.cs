@@ -64,12 +64,25 @@ public class SubSystem : MonoBehaviour
 
     }
 
-    public int Block(bool pl){
-        if(pl){
+    public int Block(bool pl)
+    {
+        if (pl)
+        {
             //if the player is using the card
             return (int)Mathf.Ceil((float)Enemy_AI.me.shieldAmount / 500f) * 15;
-        } else {
+        }
+        else
+        {
             return (int)Mathf.Ceil((float)Player.me.shieldAmount / 500f) * 15;
+        }
+    }
+    
+    public int Dodge(bool pl){
+        if(pl){
+            //if the player is using the card
+            return (int)Mathf.Ceil((float)Enemy_AI.me.speed / 250f) * 10;
+        } else {
+            return (int)Mathf.Ceil((float)Player.me.speed / 250f) * 10;
         }
     }
 

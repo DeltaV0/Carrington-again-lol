@@ -28,6 +28,10 @@ public class GraphicsManager : MonoBehaviour
     {
         text[0].text = "" + (int)Mathf.Ceil((float)Player.me.shieldAmount / 500f) * 15;
         text[1].text = "" + (int)Mathf.Ceil((float)Enemy_AI.me.shieldAmount / 500f) * 15;
+
+        text[2].text = "" + (int)Mathf.Ceil((float)Player.me.speed / 250f) * 10 + "%";
+        text[3].text = "" + (int)Mathf.Ceil((float)Enemy_AI.me.speed / 250f) * 10 + "%";
+
         textPE.text = (Mathf.Round(Player.me.PowerGen * 100f) / 100f) + "x";
         bars[0].SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Player.me.PowerGen * 100);
         bars[1].SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Player.me.Resources[0] * 4.4f);

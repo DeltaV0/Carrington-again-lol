@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
     public int shieldAmount;
 
-    
+    public int speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -46,8 +46,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(shieldAmount > 0){
+        if (shieldAmount > 0)
+        {
             shieldAmount--;
+        }
+        
+        if(speed > 0){
+            speed--;
         }
         
     }
