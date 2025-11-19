@@ -16,7 +16,7 @@ public class PlayerRenderer : MonoBehaviour
     {
         for (int i = 0; i < t.Length; i++)
         {
-            if (Mathf.Mod(i, 2) == 0)
+            if (i % 2 == 0)
             {
                 t[i].eulerAngles = new Vector3(0, 0, t[i].eulerAngles.z + 5f + (0.01f * player.speed));
             }
