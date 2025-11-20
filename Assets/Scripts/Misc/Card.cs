@@ -96,6 +96,7 @@ public class Card : MonoBehaviour
         if (system)
         {
             systemToActivate.Use();
+            
         }
     }
 

@@ -6,6 +6,8 @@ public class Enemy_AI : MonoBehaviour
 
     public Transform rendererPos;
 
+    public PlayerRenderer renderer;
+
     public int health;
 
     public int maxHealth;

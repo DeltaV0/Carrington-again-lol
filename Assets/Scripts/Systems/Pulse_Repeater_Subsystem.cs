@@ -17,10 +17,30 @@ public class Pulse_Repeater_Subsystem : SubSystem
         }
         StartCoroutine(Fire());
         Debug.Log("BangBang");
+        
     }
 
     IEnumerator Fire(){
         for(int i = 0; i < 5; i++){
+            if(OwnedByPlayer){
+        if(ID == 0)
+            {
+                Player.me.renderer.shootTurret1(OwnedByPlayer);
+            } else if(ID == 1)
+            {
+                Player.me.renderer.shootTurret2(OwnedByPlayer);
+            }
+        } else
+            {
+        if(ID == 0)
+            {
+                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer);
+            } else if(ID == 1)
+            {
+                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer);
+            }
+        
+            }
             if(OwnedByPlayer){
                 Enemy_AI.me.health -= Mathf.Clamp(20 - Block(OwnedByPlayer), 0, 1000);
                 Player.me.TargetSelectedSystem.health -= Mathf.Clamp(20 - Block(OwnedByPlayer), 0, 1000);

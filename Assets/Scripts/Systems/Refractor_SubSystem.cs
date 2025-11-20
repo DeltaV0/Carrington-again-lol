@@ -6,6 +6,27 @@ public class Refractor_SubSystem : SubSystem
 {
     public override void Use()
     {
+        if(OwnedByPlayer){
+        if(ID == 0)
+            {
+                Player.me.renderer.shootTurret1(OwnedByPlayer);
+            } else if(ID == 1)
+            {
+                Player.me.renderer.shootTurret2(OwnedByPlayer);
+            }
+        } else
+            {
+        if(ID == 0)
+            {
+                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer);
+            } else if(ID == 1)
+            {
+                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer);
+            }
+        
+            }
+
+
         CooldownSet();
         if (OwnedByPlayer)
         {

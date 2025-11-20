@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [Header("Misc Variables")]
 
     public Transform rendererPos;
+
+    public PlayerRenderer renderer;
     public int[] Resources; //steam, power, voltite
 
     public int Funding; //cash money
