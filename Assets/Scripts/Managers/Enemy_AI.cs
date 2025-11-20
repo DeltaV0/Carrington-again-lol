@@ -4,6 +4,8 @@ public class Enemy_AI : MonoBehaviour
 {
     public static Enemy_AI me;
 
+    public Transform rendererPos;
+
     public int health;
 
     public int maxHealth;

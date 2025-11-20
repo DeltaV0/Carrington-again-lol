@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public static Player me;
 
     [Header("Misc Variables")]
+
+    public Transform rendererPos;
     public int[] Resources; //steam, power, voltite
 
     public int Funding; //cash money
