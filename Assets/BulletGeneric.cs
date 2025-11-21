@@ -39,6 +39,11 @@ public class BulletGeneric : MonoBehaviour
         
     }
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     public void Hit()
     {
         
@@ -48,9 +53,11 @@ public class BulletGeneric : MonoBehaviour
             targetSystem.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
             Enemy_AI.me.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
             Enemy_AI.me.CheckDeath();
+            Invoke("Destroy", 0.5f);
             } else {
                 GameObject parts = Instantiate(MissPf, transform.position, transform.rotation);
                 transform.DOMove(target * 2f,   speed).SetEase(Ease.Linear);
+                Invoke("Destroy", 0.5f);
             }
         } else {
             if(Random.Range(0, 100) > targetSystem.Dodge(shooterSystem.OwnedByPlayer)){
@@ -58,9 +65,11 @@ public class BulletGeneric : MonoBehaviour
             targetSystem.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
             Player.me.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
             Player.me.CheckDeath();
+            Invoke("Destroy", 0.5f);
             } else {
                 GameObject parts = Instantiate(MissPf, transform.position, transform.rotation);
                 transform.DOMove(target * 2f,   speed).SetEase(Ease.Linear);
+                Invoke("Destroy", 0.5f);
             }
         }
         //Destroy(gameObject);

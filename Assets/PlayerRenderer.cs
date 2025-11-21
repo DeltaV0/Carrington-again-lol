@@ -151,7 +151,7 @@ public class PlayerRenderer : MonoBehaviour
 
     public void Die()
     {
-        transform.DOMove(transform.position - new Vector3(0, -100, 0),   10f).SetEase(Ease.InBack);
+        transform.DOMove(transform.position - new Vector3(0, 100, 0),   10f).SetEase(Ease.InQuart);
         transform.DORotate(new Vector3(0, 0, Random.Range(-90, 90)), 10f).SetEase(Ease.InQuart);
         //DeathParts.Play();
     }
