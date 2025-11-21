@@ -51,6 +51,7 @@ public class Enemy_AI : MonoBehaviour
         if(speed > 0){
             speed--;
         }
+        if(health > 0){
         if (timer > 0)
         {
             timer--;
@@ -74,5 +75,16 @@ public class Enemy_AI : MonoBehaviour
             }
             //}
         }
+        }
     }
+
+    public void CheckDeath()
+    {
+        if(health <= 0){
+        renderer.Die();
+        }
+    }
+
 }
+
+

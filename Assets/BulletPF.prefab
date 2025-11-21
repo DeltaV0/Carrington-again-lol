@@ -55,7 +55,7 @@ MonoBehaviour:
   shooterSystem: {fileID: 0}
   PlayerUse: 0
   speed: 0
-  HitPF: {fileID: 0}
+  HitPF: {fileID: 7217556656616200096, guid: 5bfeb2c7241eb50469f5626b5b4f3469, type: 3}
   MissPf: {fileID: 7397355862818916747, guid: d868d33855daab14abeabc176e36f914, type: 3}
 --- !u!198 &7419918806300722741
 ParticleSystem:

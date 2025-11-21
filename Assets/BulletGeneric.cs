@@ -47,6 +47,7 @@ public class BulletGeneric : MonoBehaviour
             GameObject parts = Instantiate(HitPF, transform.position, transform.rotation);
             targetSystem.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
             Enemy_AI.me.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
+            Enemy_AI.me.CheckDeath();
             } else {
                 GameObject parts = Instantiate(MissPf, transform.position, transform.rotation);
                 transform.DOMove(target * 2f,   speed).SetEase(Ease.Linear);
@@ -56,6 +57,7 @@ public class BulletGeneric : MonoBehaviour
             GameObject parts = Instantiate(HitPF, transform.position, transform.rotation);
             targetSystem.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
             Player.me.health -= Mathf.Clamp(Damage - shooterSystem.Block(shooterSystem.OwnedByPlayer), 0, 10000);
+            Player.me.CheckDeath();
             } else {
                 GameObject parts = Instantiate(MissPf, transform.position, transform.rotation);
                 transform.DOMove(target * 2f,   speed).SetEase(Ease.Linear);

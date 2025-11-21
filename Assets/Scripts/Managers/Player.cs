@@ -60,4 +60,15 @@ public class Player : MonoBehaviour
         }
         
     }
+
+    public void CheckDeath()
+    {
+        if(health <= 0){
+            foreach(SubSystem a in SubSystems)
+            {
+                a.health = 0;
+            }
+        renderer.Die();
+        }
+    }
 }

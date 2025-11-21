@@ -9,13 +9,13 @@ public class Drives_SubSystem : SubSystem
         if (OwnedByPlayer)
         {
             Player.me.Resources[1] -= resourceUsage[1];
-            Player.me.speed += 50000;
+            Player.me.speed += 500;
             Player.me.renderer.PlaySFX(aud);
         }
         else
         {
             Enemy_AI.me.Resources[1] -= resourceUsage[1];
-            Enemy_AI.me.speed += 50000;
+            Enemy_AI.me.speed += 500;
             Enemy_AI.me.renderer.PlaySFX(aud);
         }
         Debug.Log("vroom");

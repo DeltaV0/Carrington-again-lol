@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerRenderer : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PlayerRenderer : MonoBehaviour
 
     public AudioSource aud;
 
-    
+    public ParticleSystem DeathParts;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -146,5 +147,12 @@ public class PlayerRenderer : MonoBehaviour
             }
         }
         }
+    }
+
+    public void Die()
+    {
+        transform.DOMove(transform.position - new Vector3(0, -100, 0),   10f).SetEase(Ease.InBack);
+        transform.DORotate(new Vector3(0, 0, Random.Range(-90, 90)), 10f).SetEase(Ease.InQuart);
+        //DeathParts.Play();
     }
 }

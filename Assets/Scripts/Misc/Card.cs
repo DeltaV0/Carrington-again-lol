@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 public class Card : MonoBehaviour
 {
+    public TMP_Text textplaceholder;
     public bool playerCard;
     
     [Header("Misc settings")]
@@ -40,12 +42,14 @@ public class Card : MonoBehaviour
         {
             systemToActivate = Player.me.SubSystems[systemID];
             Set(true);
+            textplaceholder.text = systemToActivate.Name;
         }
         else
         {
             systemToActivate = Enemy_AI.me.SubSystems[systemID];
         }
         Cooldown = MaxCooldown;
+        
         
     }
 
