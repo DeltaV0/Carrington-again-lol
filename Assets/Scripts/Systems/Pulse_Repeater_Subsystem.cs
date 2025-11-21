@@ -25,28 +25,21 @@ public class Pulse_Repeater_Subsystem : SubSystem
             if(OwnedByPlayer){
         if(ID == 0)
             {
-                Player.me.renderer.shootTurret1(OwnedByPlayer);
+                Player.me.renderer.shootTurret1(OwnedByPlayer, 20, Player.me.TargetSelectedSystem, this, 2f);
             } else if(ID == 1)
             {
-                Player.me.renderer.shootTurret2(OwnedByPlayer);
+                Player.me.renderer.shootTurret2(OwnedByPlayer, 20, Player.me.TargetSelectedSystem, this, 2f);
             }
         } else
             {
         if(ID == 0)
             {
-                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer);
+                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer, 20, Enemy_AI.me.TargetSelectedSystem, this, 2f);
             } else if(ID == 1)
             {
-                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer);
+                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer, 20, Enemy_AI.me.TargetSelectedSystem, this, 2f);
             }
         
-            }
-            if(OwnedByPlayer){
-                Enemy_AI.me.health -= Mathf.Clamp(20 - Block(OwnedByPlayer), 0, 1000);
-                Player.me.TargetSelectedSystem.health -= Mathf.Clamp(20 - Block(OwnedByPlayer), 0, 1000);
-            } else {
-                Player.me.health -= Mathf.Clamp(20 - Block(OwnedByPlayer), 0, 1000);
-                Enemy_AI.me.TargetSelectedSystem.health -= Mathf.Clamp(20 - Block(OwnedByPlayer), 0, 1000);
             }
             yield return new WaitForSeconds(0.4f);
         }

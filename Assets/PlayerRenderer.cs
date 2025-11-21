@@ -15,6 +15,8 @@ public class PlayerRenderer : MonoBehaviour
     public Transform Camera;
 
     public GameObject[] pfs;
+
+    public Transform shield;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,32 +33,63 @@ public class PlayerRenderer : MonoBehaviour
         }
     }
 
-    public void shootTurret1(bool p)
+    public void shootTurret1(bool p, int d, SubSystem sys1, SubSystem sys2, float s)
     {
         if(p){
         GameObject bullet = Instantiate(pfs[0], turrets[0].position, turrets[0].rotation);
         bullet.GetComponent<BulletGeneric>().target = enemy.rendererPos.position;
+        bullet.GetComponent<BulletGeneric>().Damage = d; 
+        bullet.GetComponent<BulletGeneric>().targetSystem = sys1;
+        bullet.GetComponent<BulletGeneric>().shooterSystem = sys2;
+        bullet.GetComponent<BulletGeneric>().PlayerUse = p;
+        bullet.GetComponent<BulletGeneric>().speed = s;
+        bullet.GetComponent<BulletGeneric>().Launch();
         } else
         {
            GameObject bullet = Instantiate(pfs[0], turrets[0].position, turrets[0].rotation);
             bullet.GetComponent<BulletGeneric>().target = player.rendererPos.position; 
+            bullet.GetComponent<BulletGeneric>().Damage = d; 
+            bullet.GetComponent<BulletGeneric>().targetSystem = sys1;
+        bullet.GetComponent<BulletGeneric>().shooterSystem = sys2;
+        bullet.GetComponent<BulletGeneric>().PlayerUse = p;
+        bullet.GetComponent<BulletGeneric>().speed = s;
+            bullet.GetComponent<BulletGeneric>().Launch();
         }
     }
-    public void shootTurret2(bool p)
+    public void shootTurret2(bool p, int d, SubSystem sys1, SubSystem sys2, float s)
     {
         if(p){
         GameObject bullet = Instantiate(pfs[1], turrets[1].position, turrets[1].rotation);
         bullet.GetComponent<BulletGeneric>().target = enemy.rendererPos.position;
+        bullet.GetComponent<BulletGeneric>().Damage = d; 
+        bullet.GetComponent<BulletGeneric>().targetSystem = sys1;
+        bullet.GetComponent<BulletGeneric>().shooterSystem = sys2;
+        bullet.GetComponent<BulletGeneric>().PlayerUse = p;
+        bullet.GetComponent<BulletGeneric>().speed = s;
+        bullet.GetComponent<BulletGeneric>().Launch();
         } else
         {
            GameObject bullet = Instantiate(pfs[1], turrets[1].position, turrets[1].rotation);
-            bullet.GetComponent<BulletGeneric>().target = player.rendererPos.position; 
+            bullet.GetComponent<BulletGeneric>().target = player.rendererPos.position;  
+            bullet.GetComponent<BulletGeneric>().Damage = d; 
+            bullet.GetComponent<BulletGeneric>().targetSystem = sys1;
+        bullet.GetComponent<BulletGeneric>().shooterSystem = sys2;
+        bullet.GetComponent<BulletGeneric>().PlayerUse = p;
+        bullet.GetComponent<BulletGeneric>().speed = s;
+            bullet.GetComponent<BulletGeneric>().Launch();
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        shield.eulerAngles = new Vector3(shield.eulerAngles.x + 0.25f, shield.eulerAngles.y + 0.5f, shield.eulerAngles.z + 0.75f);
+        if (enemyuser){
+            shield.gameObject.SetActive(enemy.shieldAmount > 0);
+        } else {
+            shield.gameObject.SetActive(player.shieldAmount > 0);
+        }
+        
         Camera.localPosition = Random.insideUnitSphere * 0.025f;
         if (enemyuser)
         {

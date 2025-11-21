@@ -9,19 +9,19 @@ public class Refractor_SubSystem : SubSystem
         if(OwnedByPlayer){
         if(ID == 0)
             {
-                Player.me.renderer.shootTurret1(OwnedByPlayer);
+                Player.me.renderer.shootTurret1(OwnedByPlayer, 100, Player.me.TargetSelectedSystem, this, 0.25f);
             } else if(ID == 1)
             {
-                Player.me.renderer.shootTurret2(OwnedByPlayer);
+                Player.me.renderer.shootTurret2(OwnedByPlayer, 100 , Player.me.TargetSelectedSystem, this, 0.25f);
             }
         } else
             {
         if(ID == 0)
             {
-                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer);
+                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer, 100, Enemy_AI.me.TargetSelectedSystem, this, 0.25f);
             } else if(ID == 1)
             {
-                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer);
+                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer, 100, Enemy_AI.me.TargetSelectedSystem, this, 0.25f);
             }
         
             }
@@ -31,27 +31,10 @@ public class Refractor_SubSystem : SubSystem
         if (OwnedByPlayer)
         {
             Player.me.Resources[1] -= resourceUsage[1];
-            if (Random.Range(0, 100) > Dodge(OwnedByPlayer))
-            {
-                Enemy_AI.me.health -= Mathf.Clamp(100 - Block(OwnedByPlayer), 0, 1000);
-                Player.me.TargetSelectedSystem.health -= Mathf.Clamp(100 - Block(OwnedByPlayer), 0, 1000);
-            } else
-            {
-                Debug.Log("miss!!");
-            }
         }
         else
         {
             Enemy_AI.me.Resources[1] -= resourceUsage[1];
-            if (Random.Range(0, 100) > Dodge(OwnedByPlayer))
-            {
-                Player.me.health -= Mathf.Clamp(100 - Block(OwnedByPlayer), 0, 1000);
-                Enemy_AI.me.TargetSelectedSystem.health -= Mathf.Clamp(100 - Block(OwnedByPlayer), 0, 1000);
-            }
-            else
-            {
-                Debug.Log("Miss!!!!");
-            }
         }
         Debug.Log("BangBang");
     }

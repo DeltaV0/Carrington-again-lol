@@ -104,7 +104,7 @@ public class Deck : MonoBehaviour
     {
 		if(avalSlotCount > 0){if(DrawTimer[0] > 0){DrawTimer[0]--;} else { DrawTimer[1] = Mathf.Clamp(DrawTimer[1] - 5, 100, 200); DrawTimer[0] = DrawTimer[1]; DrawCard();} }
 		CalcMinHandPos();
-        if(deck.Count >= 0){
+        if(deck.Count <= 0){
 			Shuffle();
 		}
     }
