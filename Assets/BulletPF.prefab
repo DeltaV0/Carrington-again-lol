@@ -49,6 +49,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
   part: {fileID: 7419918806300722741}
+  spawnPart: {fileID: 0}
+  Damage: 0
+  targetSystem: {fileID: 0}
+  shooterSystem: {fileID: 0}
+  PlayerUse: 0
+  speed: 0
+  HitPF: {fileID: 0}
+  MissPf: {fileID: 7397355862818916747, guid: d868d33855daab14abeabc176e36f914, type: 3}
 --- !u!198 &7419918806300722741
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -65,7 +73,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1

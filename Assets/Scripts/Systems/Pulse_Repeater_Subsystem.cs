@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class Pulse_Repeater_Subsystem : SubSystem
 {
+    public AudioClip aud;
+
     public override void Use()
     {
         CooldownSet();
@@ -25,23 +27,23 @@ public class Pulse_Repeater_Subsystem : SubSystem
             if(OwnedByPlayer){
         if(ID == 0)
             {
-                Player.me.renderer.shootTurret1(OwnedByPlayer, 20, Player.me.TargetSelectedSystem, this, 2f);
+                Player.me.renderer.shootTurret1(OwnedByPlayer, 20, Player.me.TargetSelectedSystem, this, 2f, aud);
             } else if(ID == 1)
             {
-                Player.me.renderer.shootTurret2(OwnedByPlayer, 20, Player.me.TargetSelectedSystem, this, 2f);
+                Player.me.renderer.shootTurret2(OwnedByPlayer, 20, Player.me.TargetSelectedSystem, this, 2f, aud);
             }
         } else
             {
         if(ID == 0)
             {
-                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer, 20, Enemy_AI.me.TargetSelectedSystem, this, 2f);
+                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer, 20, Enemy_AI.me.TargetSelectedSystem, this, 2f, aud);
             } else if(ID == 1)
             {
-                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer, 20, Enemy_AI.me.TargetSelectedSystem, this, 2f);
+                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer, 20, Enemy_AI.me.TargetSelectedSystem, this, 2f, aud);
             }
         
             }
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

@@ -4,24 +4,26 @@ using System.Collections.Generic;
 
 public class Refractor_SubSystem : SubSystem
 {
+    public AudioClip aud;
+
     public override void Use()
     {
         if(OwnedByPlayer){
         if(ID == 0)
             {
-                Player.me.renderer.shootTurret1(OwnedByPlayer, 100, Player.me.TargetSelectedSystem, this, 0.25f);
+                Player.me.renderer.shootTurret1(OwnedByPlayer, 100, Player.me.TargetSelectedSystem, this, 0.1f, aud);
             } else if(ID == 1)
             {
-                Player.me.renderer.shootTurret2(OwnedByPlayer, 100 , Player.me.TargetSelectedSystem, this, 0.25f);
+                Player.me.renderer.shootTurret2(OwnedByPlayer, 100 , Player.me.TargetSelectedSystem, this, 0.1f, aud);
             }
         } else
             {
         if(ID == 0)
             {
-                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer, 100, Enemy_AI.me.TargetSelectedSystem, this, 0.25f);
+                Enemy_AI.me.renderer.shootTurret1(OwnedByPlayer, 100, Enemy_AI.me.TargetSelectedSystem, this, 0.1f, aud);
             } else if(ID == 1)
             {
-                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer, 100, Enemy_AI.me.TargetSelectedSystem, this, 0.25f);
+                Enemy_AI.me.renderer.shootTurret2(OwnedByPlayer, 100, Enemy_AI.me.TargetSelectedSystem, this, 0.1f, aud);
             }
         
             }

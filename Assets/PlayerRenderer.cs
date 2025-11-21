@@ -17,6 +17,10 @@ public class PlayerRenderer : MonoBehaviour
     public GameObject[] pfs;
 
     public Transform shield;
+
+    public AudioSource aud;
+
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,9 +37,17 @@ public class PlayerRenderer : MonoBehaviour
         }
     }
 
-    public void shootTurret1(bool p, int d, SubSystem sys1, SubSystem sys2, float s)
+    public void PlaySFX(AudioClip sfx){
+        aud.pitch = Random.Range(0.9f, 1.1f);
+        aud.PlayOneShot(sfx);
+    }
+
+    public void shootTurret1(bool p, int d, SubSystem sys1, SubSystem sys2, float s, AudioClip sfx)
     {
+        aud.pitch = Random.Range(0.9f, 1.1f);
+        aud.PlayOneShot(sfx);
         if(p){
+            //magic numbers :(
         GameObject bullet = Instantiate(pfs[0], turrets[0].position, turrets[0].rotation);
         bullet.GetComponent<BulletGeneric>().target = enemy.rendererPos.position;
         bullet.GetComponent<BulletGeneric>().Damage = d; 
@@ -56,8 +68,10 @@ public class PlayerRenderer : MonoBehaviour
             bullet.GetComponent<BulletGeneric>().Launch();
         }
     }
-    public void shootTurret2(bool p, int d, SubSystem sys1, SubSystem sys2, float s)
+    public void shootTurret2(bool p, int d, SubSystem sys1, SubSystem sys2, float s, AudioClip sfx)
     {
+        aud.pitch = Random.Range(0.9f, 1.1f);
+        aud.PlayOneShot(sfx);
         if(p){
         GameObject bullet = Instantiate(pfs[1], turrets[1].position, turrets[1].rotation);
         bullet.GetComponent<BulletGeneric>().target = enemy.rendererPos.position;
