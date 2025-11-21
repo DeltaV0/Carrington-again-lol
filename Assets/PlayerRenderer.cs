@@ -21,7 +21,7 @@ public class PlayerRenderer : MonoBehaviour
 
     public AudioSource aud;
 
-    public ParticleSystem DeathParts;
+    public GameObject DeathParts;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -153,6 +153,6 @@ public class PlayerRenderer : MonoBehaviour
     {
         transform.DOMove(transform.position - new Vector3(0, 100, 0),   10f).SetEase(Ease.InQuart);
         transform.DORotate(new Vector3(0, 0, Random.Range(-90, 90)), 10f).SetEase(Ease.InQuart);
-        //DeathParts.Play();
+        //DeathParts.SetActive(true);
     }
 }
