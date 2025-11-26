@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using System;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -38,12 +40,20 @@ public class Player : MonoBehaviour
     public int shieldAmount;
 
     public int speed;
+
+    public AudioSource Music;
+
+    public bool Paused;
+
+    private float fixedDeltaTime;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        Random.InitState(0);
+        
+        UnityEngine.Random.InitState((int)(System.DateTime.Now.Ticks * 10));
         me = this;
         PowerGen = 1f;
+        this.fixedDeltaTime = Time.fixedDeltaTime;
 
     }
 
@@ -61,6 +71,30 @@ public class Player : MonoBehaviour
         
     }
 
+    public void Update(){
+        /*if (Input.GetKeyDown("space"))
+        {
+            if(Paused){
+                Music.pitch = 1f;
+                DOTween.timeScale = 1f;
+                Time.timeScale = 1f;
+                //Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+                Paused = false;
+                
+            } else {
+                Music.pitch = 0f;
+                DOTween.timeScale = 0f;
+                Time.timeScale = 0f;
+                //Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+                Paused = true;
+            }
+        }*/
+    }
+
+    public void MusicOff(){
+        Music.DOPitch(0f, 5f);
+    }
+
     public void CheckDeath()
     {
         if(health <= 0){
@@ -68,6 +102,7 @@ public class Player : MonoBehaviour
             {
                 a.health = 0;
             }
+            MusicOff();
         renderer.Die();
         }
     }

@@ -81,6 +81,7 @@ public class Enemy_AI : MonoBehaviour
     public void CheckDeath()
     {
         if(health <= 0){
+        Player.me.MusicOff();
         renderer.Die();
         }
     }
